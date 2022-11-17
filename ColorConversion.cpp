@@ -139,6 +139,51 @@ void cmy_rgb(float C, float M, float Y)
 	}
 }
 
+void vertexgen()
+{
+	int width;
+	int length;
+	int wid;
+	int len;
+	std::cout << "Enter photo dimensions (width and length): ";
+	std::cin >> width >> length;
+	std::cout << "Enter pixel position: ";
+	std::cin >> wid >> len;
+	float gradx = width / 2;
+	float grady = length / 2;
+	float squareX = (1 / gradx);
+	float squareY = (1 / grady);
+	float x = 0, y = 0;
+	//std::cout << squareX << " " << squareY << " " << len << " " << grady << " " << y;
+	if (wid > gradx)
+	{
+		x = (wid - gradx) * (squareX);
+	}
+	else if (wid < gradx)
+	{
+		x = (gradx - wid) * (-1 * squareX);
+	}
+
+	if (len > grady)
+	{
+		y = (len - grady) * (-1 * squareY);
+	}
+	else if (len < grady)
+	{
+		y = (grady - len) * (squareY);
+	}
+	else if (wid == gradx)
+	{
+		x = 0;
+	}
+	else if (len == grady)
+	{
+		y = 0;
+	}
+
+	std::cout << "(x,y) is (" << x << "," << y << ")\n";
+}
+
 
 int main()
 {
@@ -165,7 +210,8 @@ int main()
 		std::cout << "\t3. \033[1;46mC\033[1;45mM\033[1;43mY\033[1;100mK\033[0m to \033[1;31mR\033[1;32mG\033[1;34mB\033[0m\n";
 		std::cout << "\t4. \033[1;46mC\033[1;45mM\033[1;43mY\033[0m to \033[1;31mR\033[1;32mG\033[1;34mB\033[0m\n";
 		std::cout << "\t5. Read Manual\n";
-		std::cout << "\t6. \033[1;41mExit\033[0m\n";
+		std::cout << "\t6. Find OpenGL vertices from pixel numbers! \033[1;41mNew Feature\033[0m\n";
+		std::cout << "\t7. \033[1;41mExit\033[0m\n";
 		std::cin >> choice;
 		switch (choice)
 		{
@@ -210,8 +256,13 @@ int main()
 			std::cout << "This app can be used to make different conversions from the listed cases. \nChoose your option by entering the number from the list and then press enter.\nWhile giving data inputs maintain space according to the format, which will appear beforehand in red. \nNB: *For RGB inputs must be integers from \033[1;31m0-255\033[0m\n    *For CMY/CMYK, inputs must be decimal from \033[1;31m0.00-100.00\033[0m \n\033[1;46mThank you for using this app!\033[0m\n";
 			break;
 		case 6:
+			vertexgen();
+			break;
+
+		case 7:
 			t = false;
 			break;
+
 		default:
 			std::cout << "\033[1;31mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\n";
 			std::cout << "\033[1;31m\t\tInvalid Option\n";

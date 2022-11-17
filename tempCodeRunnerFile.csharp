@@ -1,0 +1,53 @@
+
+    class Quiz
+    {
+        private int q1;
+          private static int q2;
+          public Quiz() { String a = "Quiz"; }
+          public Quiz(int p1,int p2)
+          {
+              q1 = p1; q2 = p2;
+
+          }
+          public void add(int i)
+          {
+              q2 = q1 + i;
+              q1 = q2 - q1 + i;
+
+          }
+          public void showValues()
+          {
+              Console.WriteLine("Q:" + q1 + " " + q2);
+
+          }
+
+
+
+
+
+
+
+
+        static void Main(string[] args)
+        {
+              Quiz q = new Quiz();
+              q.q1 = 4;
+              q.showValues();
+              q.add(2);
+              q.showValues();
+              Quiz qq = new Quiz(2, 3);
+              qq.add(1);
+              q.showValues();
+              qq.showValues();
+              Quiz qqq = q;
+              qqq.add(0);
+              q.showValues();
+              qq.showValues();
+              qqq.showValues();
+
+
+
+
+
+        }
+    }
